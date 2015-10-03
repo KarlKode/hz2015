@@ -2,4 +2,4 @@
 
 var gulp = require('gulp');
 
-gulp.task('default', ['less', 'images', 'fonts', 'markup', 'watch']);
+gulp.task('default', ['sass', 'images', 'fonts', 'markup', 'watch']);

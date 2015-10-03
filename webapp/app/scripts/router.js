@@ -47,6 +47,4 @@ module.exports = Backbone.Router.extend({
     photos: function () {
         this.trigger('router:showView', new PhotosView());
     }
-
-
 });
