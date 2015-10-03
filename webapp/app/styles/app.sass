@@ -1,8 +1,83 @@
 @import "app/components/Materialize/sass/materialize.scss"
 
 body
-	margin: 0
-	padding: 0
+    margin: 0
+    padding: 0
 
-body  #super-terrific-happy-app button.start
-    width: 100% !important
+html, body, #content, #appview
+    height:100%
+
+body  #appview button.start
+    width: 100%
+
+.shareBackground
+    background-size: cover
+    height: 100%
+    overflow: hidden
+
+
+.face img
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    border: solid 3px #FFF;
+    display: inline-block;
+    -webkit-box-shadow: 0 2px 2px 0 rgba(0,0,0,0.25);
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.25)
+
+
+
+.grid-item
+    width: 33.333%;
+
+.face img
+    -webkit-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
+    -webkit-transform: scale(0.1);
+    transform: scale(0.1);
+    opacity: 0
+.show .face img
+    -webkit-transform: scale(0.8);
+    transform: scale(0.8);
+    opacity: 0.4 
+
+.show .face.select img
+    -webkit-box-shadow: 0 0 20px 0 rgba(248,148,6,0.25);
+    box-shadow: 0 0 20px 0 rgba(248,148,6,0.25);
+    opacity: 1
+    -webkit-transform: scale(1)
+    transform: scale(1)
+
+body .done .face img, body .done .face.select img
+    -webkit-transform: scale(0);
+    transform: scale(0);
+
+.sendNow, .takePhoto, .audioTrack, .infos
+    -webkit-transition: all .8s ease-in-out;
+    transition: all .8s ease-in-out;
+    position: fixed
+    bottom: 40px;
+    left: 50%
+    margin-left: -27.75px;
+    -webkit-transform: translate(0,150px);
+    transform: translate(0,150px);
+
+body #content .takePhoto
+    -webkit-transform: scale(1.5);
+    transform: scale(1.5);
+body #content .audioTrack
+    left: 20%
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    
+body #content .infos
+    left: 80%
+    -webkit-transform: scale(1);
+    transform: scale(1);
+
+.ready .sendNow
+    -webkit-transform: translate(0,0);
+    transform: translate(0,0);
+.photo img
+    max-width: 100%
+    display: block

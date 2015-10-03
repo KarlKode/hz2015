@@ -4,13 +4,16 @@ var Backbone = require('backbone');
 require('jquery');
 Backbone.$ = $;
 
-var superTerrificHappyAppView = require('./views/super-terrific-happy-app');
-var superTerrificHappyAppModel = require('./models/super-terrific-happy-app');
+var EventView = require('./views/event');
+var ShareView = require('./views/share');
+var PhotosView = require('./views/photos');
 
 module.exports = Backbone.Router.extend({
 
     routes: {
-        '' : 'index'
+        '' : 'index',
+        'share': 'share',
+        'photos': 'photos'
     },
 
 
@@ -32,7 +35,18 @@ module.exports = Backbone.Router.extend({
 
     // # (/)
     index: function () {
-        this.trigger('router:showView', new superTerrificHappyAppView({ model: new superTerrificHappyAppModel() }));
+        this.trigger('router:showView', new EventView());
+    },
+
+    // # (/share)
+    share: function () {
+        this.trigger('router:showView', new ShareView());
+    },
+
+    // # (/share)
+    photos: function () {
+        this.trigger('router:showView', new PhotosView());
     }
+
 
 });

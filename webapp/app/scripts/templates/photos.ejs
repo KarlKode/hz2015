@@ -1,0 +1,6 @@
+<a class="btn-floating btn-large waves-effect waves-light red takePhoto"><i class="material-icons">photo_camera</i></a>
+<a class="btn-floating btn-large waves-effect waves-light audioTrack"><i class="material-icons">audiotrack</i></a>
+<a class="btn-floating btn-large waves-effect waves-light infos"><i class="material-icons">map</i></a>
+<div class="grid"> 
+  <% _.each(photos, function (photo){%><div class="photo grid-item"><img src="<%=photo.url %>" /></div><% }); %>
+  </div>
