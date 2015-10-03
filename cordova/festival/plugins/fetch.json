@@ -1,0 +1,42 @@
+{
+    "cordova-plugin-whitelist": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-whitelist@1"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "cordova-plugin-sim": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-sim"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "cordova-plugin-contacts": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-contacts"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "cordova-plugin-screen-orientation": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-screen-orientation"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "cordova-plugin-camera": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-camera"
+        },
+        "is_top_level": true,
+        "variables": {}
+    }
+}

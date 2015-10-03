@@ -44,9 +44,22 @@ var config = {
     fonts: {
         src: [
             app + '/fonts/**',
-            nodeModules + '/font-awesome/fonts/**' //add paths to other libraries if you add them
+            nodeModules + '/font-awesome/fonts/**',
+            nodeModules + '/materialize-css/font/**' //add paths to other libraries if you add them
         ],
         dest: dest + '/fonts'
+    },
+    font: {
+        src: [
+            nodeModules + '/materialize-css/font/**' //add paths to other libraries if you add them
+        ],
+        dest: dest + '/font'
+    },
+    cordova: {
+        src: [
+            app + '/cordova/**' //add paths to other libraries if you add them
+        ],
+        dest: dest + '/cordova'
     },
     markup: {
         src: app + '/index.html',

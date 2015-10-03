@@ -57,3 +57,5 @@ docs/_build/
 target/
 
 webapp/app/components/
+
+node_modules
