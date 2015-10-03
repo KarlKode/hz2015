@@ -12,12 +12,12 @@ var EventModel = require('../models/event');
 $.superTerrificHappyApp = require('../lib/super-terrific-happy-app');
 
 // For the force layout:
-var padding = 1;
-var radius = 55;
+var padding = 10;
+var radius = 128/2;
 var pack = d3.layout.pack()
     .sort(null)
     .size([100, 100])
-    .radius(function(d) { return d + padding; });
+    .radius(function(d) { return d  + padding; });
 var origin;
 
 module.exports = Backbone.View.extend({
@@ -49,31 +49,23 @@ module.exports = Backbone.View.extend({
             'https://s3.amazonaws.com/uifaces/faces/twitter/ok/128.jpg',
             'https://s3.amazonaws.com/uifaces/faces/twitter/spiltmilkstudio/128.jpg',
             'https://s3.amazonaws.com/uifaces/faces/twitter/adellecharles/128.jpg',
+            'https://s3.amazonaws.com/uifaces/faces/twitter/sauro/128.jpg',
             'https://s3.amazonaws.com/uifaces/faces/twitter/sauro/128.jpg'
         ];
 
-        // Calculate positions for the faces
-        var n = avatarUrls.length;
-        var classes = { className:"", children: d3.range(n).map(function() { 
-            return { className:"", packageName: "", value: radius }; }) 
+        // Calculate positions for the faces 
+        this.classes = { className:"", children: _.map(avatarUrls, function(d) { 
+            return {url: d, className:"", packageName: "", value: radius*0.6, selected: false }; }) 
         };
 
-        var packed = pack(classes);
-
-        origin = { left: $(document).width() / 2 - packed[0].r,
-                   top: $(document).height() / 2 - packed[0].r };
-
-        var avatars = packed.slice(1).map(function(d, i) {
-                return {
-                    url: avatarUrls[i],
-                    transform: 'translate(' + (origin.left + d.x) + 'px, ' + (origin.top + d.y) + 'px)'
-                };
-            });
+        var packed = pack(this.classes);
+ 
 
         this.$el.removeClass('show');
         this.$el.removeClass('done');
         this.$el.removeClass('ready');
-        this.$el.html(this.template({ avatars: avatars })); 
+        this.$el.html(this.template({ avatars: avatarUrls })); 
+        this.update_ui(packed);
 
         _.delay(function(self){
             self.$el.addClass('show');
@@ -85,21 +77,37 @@ module.exports = Backbone.View.extend({
         e.preventDefault();
         $(e.target).parent().toggleClass("select");
         this.$el.toggleClass("ready", this.$('.select').length>0);
+        var index = $(e.target).parent().index('.face');
+        var current = this.classes.children[index];
+        current.selected = !current.selected;
+        current.value = current.selected? radius : radius*0.6 ;
+ 
+        var packed = pack(this.classes); 
+        this.update_ui(packed);
+    },
 
-        // Recalculate force layout
-        var children = $('.face').map(function(d,i) {
-            return { className:"", packageName:"", value: $(this).hasClass('select') ? radius * 1.25 : radius }; 
-        }).toArray();
-        var classes = { className:"", children: children };
-
-        var packed = pack(classes);
-
-        origin = { left: $(document).width() / 2 - packed[0].r,
-                   top: $(document).height() / 2 - packed[0].r };
-
+    update_ui: function(packed){
+        var minx = d3.min(this.classes.children, function(d){ 
+            return d.x+radius-d.value
+        });
+        var maxx = d3.max(this.classes.children, function(d){ 
+            return d.x+radius+d.value
+        });
+        var miny = d3.min(this.classes.children, function(d){ 
+            return d.y+radius-d.value
+        });
+        var maxy = d3.max(this.classes.children, function(d){ 
+            return d.y+radius+d.value
+        });
+        var width = maxx-minx;
+        var height = maxy-miny;
+        origin = { left: -minx+$(window).width()/2-width/2,
+                   top: -miny+$(window).height()/3-height/2,};
+        console.log(maxx);
+        var self = this;
         packed.slice(1).forEach(function(d,i) {
-            $('.face:eq('+i+')').css('transform', 'translate(' + (origin.left + d.x) + 'px, ' + (origin.top + d.y) + 'px)');
-            $('.face:eq('+i+')').css('-webkit-transform', 'translate(' + (origin.left + d.x) + 'px, ' + (origin.top + d.y) + 'px)');
+            self.$('.face:eq('+i+')').css('transform', 'translate(' + (origin.left + d.x) + 'px, ' + (origin.top + d.y) + 'px)');
+            self.$('.face:eq('+i+')').css('-webkit-transform', 'translate(' + (origin.left + d.x) + 'px, ' + (origin.top + d.y) + 'px)');
         });
     },
 

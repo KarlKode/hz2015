@@ -1,10 +1,10 @@
 <div style="background-image:url(https://unsplash.com/photos/08-c5-GxA7M/download);" class="shareBackground">
   <a class="btn-floating btn-large waves-effect waves-light green sendNow"><i class="material-icons">done</i></a>
         
-
+<div class="faces">
   <% _.each(avatars, function (avatar){%>
- <div class="face" style="transform:<%=avatar.transform %>; -webkit-transform:<%=avatar.transform %>"><img src="<%=avatar.url %>" /></div>
+ <div class="face" ><img src="<%=avatar %>" /></div>
 
   <% }); %>
-
+</div>
 </div>
