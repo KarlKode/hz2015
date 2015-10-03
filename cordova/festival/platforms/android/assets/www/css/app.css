@@ -2148,7 +2148,7 @@ body .done .face img,body .done .face.select img{-webkit-transform:scale(0);tran
 body #content .takePhoto{-webkit-transform:scale(1.5);transform:scale(1.5)}
 body #content .audioTrack{left:24px;margin-left:0;-webkit-transform:scale(1);transform:scale(1)}
 .ready .sendNow{-webkit-transform:translate(0,0);transform:translate(0,0)}
-.photo img{max-width:100%;display:block}
+.photo img{max-width:100%;display:block;border:1px solid #000}
 .currentSong{-webkit-transition:all .8s ease-in-out;transition:all .8s ease-in-out;padding:0;margin:20px;position:fixed;bottom:100px;z-index:20000;left:0;right:0;-webkit-transform:translate(0,250px);transform:translate(0,250px)}
 body #content .showSong .currentSong{-webkit-transform:translate(0,0);transform:translate(0,0)}
 body #content .showSong .infos,body #content .showSong .sendNow,body #content .showSong .takePhoto{opacity:0}
