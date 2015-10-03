@@ -49,6 +49,7 @@ module.exports = Backbone.View.extend({
             'https://s3.amazonaws.com/uifaces/faces/twitter/ok/128.jpg',
             'https://s3.amazonaws.com/uifaces/faces/twitter/spiltmilkstudio/128.jpg',
             'https://s3.amazonaws.com/uifaces/faces/twitter/adellecharles/128.jpg',
+            'https://s3.amazonaws.com/uifaces/faces/twitter/adellecharles/128.jpg',
             'https://s3.amazonaws.com/uifaces/faces/twitter/sauro/128.jpg',
             'https://s3.amazonaws.com/uifaces/faces/twitter/sauro/128.jpg'
         ];
@@ -88,27 +89,31 @@ module.exports = Backbone.View.extend({
 
     update_ui: function(packed){
         var minx = d3.min(this.classes.children, function(d){ 
-            return d.x+radius-d.value
+            return d.x+radius-d.value;
         });
         var maxx = d3.max(this.classes.children, function(d){ 
-            return d.x+radius+d.value
+            return d.x+radius+d.value;
         });
         var miny = d3.min(this.classes.children, function(d){ 
-            return d.y+radius-d.value
+            return d.y+radius-d.value;
         });
         var maxy = d3.max(this.classes.children, function(d){ 
-            return d.y+radius+d.value
+            return d.y+radius+d.value;
         });
         var width = maxx-minx;
         var height = maxy-miny;
         origin = { left: -minx+$(window).width()/2-width/2,
                    top: -miny+$(window).height()/3-height/2,};
-        console.log(maxx);
         var self = this;
         packed.slice(1).forEach(function(d,i) {
-            self.$('.face:eq('+i+')').css('transform', 'translate(' + (origin.left + d.x) + 'px, ' + (origin.top + d.y) + 'px)');
-            self.$('.face:eq('+i+')').css('-webkit-transform', 'translate(' + (origin.left + d.x) + 'px, ' + (origin.top + d.y) + 'px)');
+            var yshift = (miny < 0 ? -miny : 0);
+            var x = origin.left + d.x;
+            var y = origin.top + d.y + yshift;
+            self.$('.face:eq('+i+')').css('transform', 'translate(' + x + 'px, ' + y + 'px)');
+            self.$('.face:eq('+i+')').css('-webkit-transform', 'translate(' + x + 'px, ' + y + 'px)');
         });
+        var ratio = $(window).width() / (width + 20);
+        $('.faces').css('transform', 'scale(' + (ratio < 1 ? ratio : 1) + ')');
     },
 
     sendNow: function(e){
