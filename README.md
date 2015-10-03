@@ -1,4 +1,5 @@
 # hz2015
+# STRUNZ: https://youtu.be/yU5bqG9Fx8g?t=128
 
 We only accept Swiss numbers:
 - removing +41/0041
