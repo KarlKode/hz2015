@@ -66,8 +66,7 @@ module.exports = Backbone.View.extend({
         var avatars = packed.slice(1).map(function(d, i) {
                 return {
                     url: avatarUrls[i],
-                    left: origin.left + d.x + 'px',
-                    top: origin.top + d.y + 'px'
+                    transform: 'translate(' + (origin.left + d.x) + 'px, ' + (origin.top + d.y) + 'px)'
                 };
             });
 
@@ -99,8 +98,8 @@ module.exports = Backbone.View.extend({
                    top: $(document).height() / 2 - packed[0].r };
 
         packed.slice(1).forEach(function(d,i) {
-            $('.face:eq('+i+')').css('left', origin.left + d.x + 'px');
-            $('.face:eq('+i+')').css('top', origin.top + d.y + 'px');
+            $('.face:eq('+i+')').css('transform', 'translate(' + (origin.left + d.x) + 'px, ' + (origin.top + d.y) + 'px)');
+            $('.face:eq('+i+')').css('-webkit-transform', 'translate(' + (origin.left + d.x) + 'px, ' + (origin.top + d.y) + 'px)');
         });
     },
 
