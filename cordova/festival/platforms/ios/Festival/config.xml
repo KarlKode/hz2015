@@ -36,7 +36,7 @@
     <author email="dev@cordova.apache.org" href="http://cordova.io">
         Apache Cordova Team
     </author>
-    <content src="http://4945a735.ngrok.io/" />
+    <content src="index.html" />
     <access origin="*" />
     <allow-navigation href="http://*.ngrok.io" />
     <allow-intent href="http://*/*" />

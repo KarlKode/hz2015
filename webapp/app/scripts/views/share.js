@@ -23,7 +23,7 @@ var origin;
 module.exports = Backbone.View.extend({
     
 	template: require('../templates/share'), 
-
+    className: 'canfly',
     events: {
         'click .face img': 'select',
          'touchend .face img': 'select',
@@ -118,7 +118,7 @@ module.exports = Backbone.View.extend({
         this.$el.addClass('done');
         _.delay(function(){
             window.location.hash = '#photos';
-        }, 2000)
+        }, 600)
     },
     superTerrificHappyApp: function () {
        

@@ -25,6 +25,8 @@
   </div>
 
  
-<div class="grid"> 
-  <% _.each(photos, function (photo){%><div class="photo grid-item"><img src="<%=photo.url %>" /></div><% }); %>
+<div class="grid" style="background: black;"> <% if(window.image != null ) { %>
+<a class="photo grid-item" href="<%=window.image %>"><img src="<%=window.image %>" /></a>
+<% } %>
+  <% _.each(photos, function (photo){%><a class="photo grid-item" href="<%=photo.url %>"><img src="<%=photo.url %>" /></a><% }); %>
   </div>

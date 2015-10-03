@@ -4,6 +4,7 @@ var Backbone = require('backbone');
 require('jquery');
 Backbone.$ = $;
 
+var SignupView = require('./views/signup');
 var EventView = require('./views/event');
 var ShareView = require('./views/share');
 var PhotosView = require('./views/photos');
@@ -13,6 +14,7 @@ module.exports = Backbone.Router.extend({
     routes: {
         '' : 'index',
         'share': 'share',
+        'event': 'event',
         'photos': 'photos'
     },
 
@@ -35,6 +37,11 @@ module.exports = Backbone.Router.extend({
 
     // # (/)
     index: function () {
+        this.trigger('router:showView', new SignupView());
+    },
+
+    // # (/event)
+    event: function () {
         this.trigger('router:showView', new EventView());
     },
 

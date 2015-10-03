@@ -36,6 +36,18 @@ module.exports = Backbone.View.extend({
 
     swapContent: function (view) {
         view.render();
+        var fly = this.$('#appview .canfly')
+        if (fly.length){
+            fly.appendTo(this.$el);
+            fly.addClass('fly');
+            _.delay(function(){
+                 fly.addClass("move").css({"transform": "translate(0,-"+$(window.document).height()+"px)","-webkit-transform": "translate(0,-"+$(window.document).height()+"px)"});
+       
+            },100);
+            _.delay(function(){
+                 fly.remove();  
+            },3000);
+        }
         this.$('#appview').html('')
         view.$el.addClass('theview');
         this.$('#appview').append(view.$el);

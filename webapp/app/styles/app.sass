@@ -1,5 +1,5 @@
 @import "app/components/Materialize/sass/materialize.scss"
-
+@import "pop"
 body
     margin: 0
     padding: 0
@@ -15,6 +15,9 @@ body  #appview button.start
     height: 100%
     overflow: hidden
 
+.darkbackground
+    background: black
+
 .face
     position: absolute;
     -webkit-transition: all .2s ease-in-out;
@@ -29,9 +32,24 @@ body  #appview button.start
     box-shadow: 0 2px 2px 0 rgba(0,0,0,0.25)
 
 
+.fly
+    -webkit-transition: all 1s ease-in-out;
+    transition: all 1s ease-in-out;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 1
+    z-index: 60000;
 
 .grid-item
     width: 33.333%;
+    border: 0
+    &:hover, &:active, &:focus
+        border: 0
+        outline-color: transparent;
+        outline-style: none;
 
 .face img
     -webkit-transition: all .2s ease-in-out;
@@ -65,7 +83,8 @@ body .done .face img, body .done .face.select img
     -webkit-transform: translate(0,150px);
     transform: translate(0,150px);
     z-index: 10000
-
+.fly.move .sendNow
+    display: none
 body #content .takePhoto
     -webkit-transform: scale(1.5);
     transform: scale(1.5);
@@ -82,7 +101,6 @@ body #content .audioTrack
 .photo img
     max-width: 100%
     display: block
-    border: 1px solid black;
 
 .currentSong
     -webkit-transition: all .8s ease-in-out;
