@@ -12,6 +12,7 @@ def create_app():
     app.config.from_object(CONFIGS.get(config_name))
     app.config.from_pyfile('config.py')
     app.config['ENV'] = config_name.upper()
+    return app
 
 app = Flask(__name__)
 api = Api(app)

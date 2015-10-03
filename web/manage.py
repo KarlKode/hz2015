@@ -5,7 +5,7 @@ from web_api import create_app, db
 
 app = create_app()
 
-manager = Manager()
+manager = Manager(app)
 
 manager.add_command('shell', Shell(make_context=lambda: {'app': app, 'db': db}))
 manager.add_command('clean', Clean())
