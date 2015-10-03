@@ -74,11 +74,7 @@ body #content .audioTrack
     margin-left:0
     -webkit-transform: scale(1);
     transform: scale(1);
-
-body #content .infos
-    left: 80%
-    -webkit-transform: scale(1);
-    transform: scale(1);
+ 
 
 .ready .sendNow
     -webkit-transform: translate(0,0);
@@ -86,3 +82,40 @@ body #content .infos
 .photo img
     max-width: 100%
     display: block
+
+.currentSong
+    -webkit-transition: all .8s ease-in-out;
+    transition: all .8s ease-in-out;
+    padding: 0;
+    margin: 20px;
+    position: fixed;
+    bottom: 100px;
+    z-index: 20000;
+    left: 0;
+    right: 0;
+    -webkit-transform: translate(0,250px);
+    transform: translate(0,250px);
+
+body #content .showSong
+    .currentSong
+        -webkit-transform: translate(0,0);
+        transform: translate(0,0);
+    .sendNow, .takePhoto, .infos
+        opacity: 0
+    .audioTrack
+        .cl, .au
+            -webkit-transform: rotate(180deg); 
+            transform: rotate(180deg); 
+        .cl
+            opacity: 1
+        .au
+            opacity: 0
+.audioTrack
+    .cl, .au
+        -webkit-transition: all .8s ease-in-out;
+        transition: all .8s ease-in-out;
+    .cl
+        position: absolute
+        left: 0
+        top: 0
+        opacity: 0
