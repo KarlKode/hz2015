@@ -14,6 +14,12 @@ module.exports = Backbone.View.extend({
 	el: '#appview',
     
 	template: require('../templates/photos'),
+
+    events:{
+        'click .infos': 'infos',
+        'touchend .infos': 'infos'
+    },
+
  
     initialize: function() {
         this.model = new EventModel();
@@ -68,6 +74,10 @@ module.exports = Backbone.View.extend({
             });
         }); 
         return this;
+    },
+
+    infos: function(){
+        this.$('.infos').openFAB();
     },
  
  

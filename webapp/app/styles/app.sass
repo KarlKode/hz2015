@@ -52,7 +52,7 @@ body .done .face img, body .done .face.select img
     -webkit-transform: scale(0);
     transform: scale(0);
 
-.sendNow, .takePhoto, .audioTrack, .infos
+.sendNow, .takePhoto, .audioTrack
     -webkit-transition: all .8s ease-in-out;
     transition: all .8s ease-in-out;
     position: fixed
@@ -61,15 +61,17 @@ body .done .face img, body .done .face.select img
     margin-left: -27.75px;
     -webkit-transform: translate(0,150px);
     transform: translate(0,150px);
+    z-index: 10000
 
 body #content .takePhoto
     -webkit-transform: scale(1.5);
     transform: scale(1.5);
 body #content .audioTrack
-    left: 20%
+    left: 24px
+    margin-left:0
     -webkit-transform: scale(1);
     transform: scale(1);
-    
+
 body #content .infos
     left: 80%
     -webkit-transform: scale(1);

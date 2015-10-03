@@ -36,5 +36,6 @@ module.exports = Backbone.View.extend({
 
     swapContent: function (view) {
         view.render();
+        view.delegateEvents();
     }
 });
