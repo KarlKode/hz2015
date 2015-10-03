@@ -10,8 +10,7 @@ var EventModel = require('../models/event');
 
 $.superTerrificHappyApp = require('../lib/super-terrific-happy-app');
 
-module.exports = Backbone.View.extend({
-	el: '#appview',
+module.exports = Backbone.View.extend({ 
     
 	template: require('../templates/photos'),
 
@@ -19,7 +18,9 @@ module.exports = Backbone.View.extend({
         'click .infos': 'infos',
         'touchend .infos': 'infos',
         'click .audioTrack': 'audioTrack',
-        'touchend .audioTrack': 'audioTrack'
+        'touchend .audioTrack': 'audioTrack',
+        'click .takePhoto': 'takePhoto',
+        'touchend .takePhoto': 'takePhoto'
     },
 
     audioTrack:function(e){
@@ -86,6 +87,23 @@ module.exports = Backbone.View.extend({
     infos: function(e){
         e.preventDefault();
         this.$('.infos').openFAB();
+
+    },
+
+    takePhoto: function(e){
+        e.preventDefault();
+
+        function onSuccess(imageData) { 
+            window.image = "data:image/jpeg;base64," + imageData;
+            window.location.hash = "#share";
+        }
+
+        function onFail(message) {
+            alert('Failed because: ' + message);
+        }  
+        navigator.camera.getPicture(onSuccess, onFail, { quality: 70,
+            destinationType: Camera.DestinationType.DATA_URL
+        });
     },
  
  

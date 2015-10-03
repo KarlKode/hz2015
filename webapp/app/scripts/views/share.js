@@ -21,7 +21,6 @@ var pack = d3.layout.pack()
 var origin;
 
 module.exports = Backbone.View.extend({
-	el: '#appview',
     
 	template: require('../templates/share'), 
 
@@ -60,7 +59,6 @@ module.exports = Backbone.View.extend({
         };
 
         var packed = pack(this.classes);
- 
 
         this.$el.removeClass('show');
         this.$el.removeClass('done');
@@ -71,6 +69,9 @@ module.exports = Backbone.View.extend({
         _.delay(function(self){
             self.$el.addClass('show');
         }, 50,  this);
+        if(window.image){
+            this.$('.shareBackground').css({'background-image':'url('+window.image+')'})
+        }
         return this;
     },
     

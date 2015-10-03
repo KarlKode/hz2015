@@ -61,6 +61,12 @@ var config = {
         ],
         dest: dest + '/cordova'
     },
+    finalize: {
+        src: [
+            dest+'/**' //add paths to other libraries if you add them
+        ],
+        dest: '../cordova/festival/www'
+    },
     markup: {
         src: app + '/index.html',
         dest: dest

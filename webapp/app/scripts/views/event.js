@@ -10,8 +10,7 @@ var EventModel = require('../models/event');
 
 $.superTerrificHappyApp = require('../lib/super-terrific-happy-app');
 
-module.exports = Backbone.View.extend({
-	el: '#appview',
+module.exports = Backbone.View.extend({ 
     
 	template: require('../templates/event'),
 

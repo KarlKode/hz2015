@@ -7,8 +7,7 @@ var Masonry = require('masonry-layout');
 $.bridget( 'masonry', Masonry );
 
 function init() {
-	function success(){
-		alert("done");
+	function success(){ 
 	}
     if(isAndroid()){
     	$.ajax({
@@ -35,8 +34,7 @@ function isiOS(){
     return ( navigator.userAgent.indexOf("iPhone") > 0 || navigator.userAgent.indexOf("iPad") > 0 || navigator.userAgent.indexOf("iPod") > 0); 
 }
 
-function onDeviceReady(){
-    alert("device is ready");
+function onDeviceReady(){ 
 }
 
 init();
