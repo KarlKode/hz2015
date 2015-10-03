@@ -49,9 +49,6 @@ module.exports = Backbone.View.extend({
             'https://s3.amazonaws.com/uifaces/faces/twitter/ok/128.jpg',
             'https://s3.amazonaws.com/uifaces/faces/twitter/spiltmilkstudio/128.jpg',
             'https://s3.amazonaws.com/uifaces/faces/twitter/adellecharles/128.jpg',
-            'https://s3.amazonaws.com/uifaces/faces/twitter/sauro/128.jpg',            'https://s3.amazonaws.com/uifaces/faces/twitter/spiltmilkstudio/128.jpg',
-            'https://s3.amazonaws.com/uifaces/faces/twitter/adellecharles/128.jpg',
-            'https://s3.amazonaws.com/uifaces/faces/twitter/sauro/128.jpg',            'https://s3.amazonaws.com/uifaces/faces/twitter/spiltmilkstudio/128.jpg',
             'https://s3.amazonaws.com/uifaces/faces/twitter/adellecharles/128.jpg',
             'https://s3.amazonaws.com/uifaces/faces/twitter/sauro/128.jpg',
             'https://s3.amazonaws.com/uifaces/faces/twitter/sauro/128.jpg'
