@@ -3,7 +3,7 @@
         
 
   <% _.each(avatars, function (avatar){%>
- <div class="face"><img src="<%=avatar.url %>" /></div>
+ <div class="face" style="top:<%=avatar.top %>; left:<%=avatar.left %>"><img src="<%=avatar.url %>" /></div>
 
   <% }); %>
 
