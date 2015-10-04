@@ -32,7 +32,7 @@ function uploadCanvasData(dataUrl)
               alert('There was an error 400')
            }
            else {
-               alert('something else other than 200 was returned')
+               alert('something else other than 200 was returned '+request.status)
            }
         }
     }
@@ -144,6 +144,29 @@ module.exports = Backbone.View.extend({
     addPhoto: function(m){
         var item =$('<a class="photo grid-item" href="'+m.get('url')+'"><img src="'+m.get('url')+'" /></a>');
         this.$('.grid').prepend(item);
+        var self = this;
+        item.magnificPopup({
+          type: 'image',
+          mainClass: 'mfp-with-zoom', // this class is for CSS animation below
+
+          zoom: {
+            enabled: true, // By default it's false, so don't forget to enable it
+
+            duration: 300, // duration of the effect, in milliseconds
+            easing: 'ease-in-out', // CSS transition easing function
+
+            // The "opener" function should return the element from which popup will be zoomed in
+            // and to which popup will be scaled down
+            // By defailt it looks for an image tag:
+            opener: function(openerElement) {
+              self.$el.removeClass("showSong");     
+              var op = openerElement.is('img') ? openerElement : openerElement.find('img');
+               
+                return op.length==0?openerElement:op;
+            }
+          }
+
+        });
         var msnry = this.msnry;
         imagesLoaded( item[0], function() {
             // layout Masonry after each image loads
