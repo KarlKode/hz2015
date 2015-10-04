@@ -24,4 +24,5 @@
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
     </platform>
+    <preference name='phonegap-version' value='cli-5.1.1' />s
 </widget>

@@ -34,4 +34,5 @@
     <allow-intent href="sms:*" />
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
+    <preference name="phonegap-version" value="cli-5.1.1" />
 </widget>
