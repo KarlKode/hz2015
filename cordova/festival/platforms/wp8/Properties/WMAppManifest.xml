@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Deployment AppPlatformVersion="8.0" xmlns="http://schemas.microsoft.com/windowsphone/2012/deployment">
+    <DefaultLanguage code="en-US" xmlns="" />
+    <Languages xmlns="">
+        <Language code="en-US" />
+    </Languages>
+    <App Author="Apache Cordova Team" BitsPerPixel="32" Description="A sample Apache Cordova application that responds to the deviceready event." Genre="apps.normal" ProductID="{33e5bd10-6a45-11e5-accd-699cbe78c35c}" Publisher="Apache Cordova Team" PublisherID="{db093ed5-53b1-45f7-af72-751e8f36ab80}" RuntimeType="Silverlight" Title="Festival" Version="0.0.1" xmlns="">
+        <IconPath IsRelative="true" IsResource="false">ApplicationIcon.png</IconPath>
+        <Capabilities>
+            <Capability Name="ID_CAP_WEBBROWSERCOMPONENT" />
+            <Capability Name="ID_CAP_NETWORKING" />
+            <Capability Name="ID_CAP_ISV_CAMERA" />
+            <Capability Name="ID_CAP_MEDIALIB_PHOTO" />
+            <Capability Name="ID_CAP_CONTACTS" />
+        </Capabilities>
+        <Tasks>
+            <DefaultTask Name="_default" NavigationPage="MainPage.xaml" />
+        </Tasks>
+        <Tokens>
+            <PrimaryToken TaskName="_default" TokenID="FestivalToken">
+                <TemplateFlip>
+                    <SmallImageURI IsRelative="true" IsResource="false">Background.png</SmallImageURI>
+                    <Count>0</Count>
+                    <BackgroundImageURI IsRelative="true" IsResource="false">Background.png</BackgroundImageURI>
+                    <Title>Festival</Title>
+                    <BackContent />
+                    <BackBackgroundImageURI />
+                    <BackTitle />
+                    <LargeBackgroundImageURI />
+                    <LargeBackContent />
+                    <LargeBackBackgroundImageURI />
+                    <DeviceLockImageURI />
+                    <HasLarge>false</HasLarge>
+                </TemplateFlip>
+            </PrimaryToken>
+        </Tokens>
+        <ScreenResolutions>
+            <ScreenResolution Name="ID_RESOLUTION_WVGA" />
+            <ScreenResolution Name="ID_RESOLUTION_WXGA" />
+            <ScreenResolution Name="ID_RESOLUTION_HD720P" />
+        </ScreenResolutions>
+    </App>
+</Deployment>

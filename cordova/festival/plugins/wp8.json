@@ -1,0 +1,72 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {
+            "config.xml": {
+                "parents": {
+                    "/*": [
+                        {
+                            "xml": "<feature name=\"Camera\"><param name=\"wp-package\" value=\"Camera\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"Contacts\"><param name=\"wp-package\" value=\"Contacts\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"YoikScreenOrientation\"><param name=\"wp-package\" value=\"YoikScreenOrientation\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"Sim\"><param name=\"wp-package\" value=\"Sim\" /></feature>",
+                            "count": 1
+                        }
+                    ]
+                }
+            },
+            "Properties/WMAppManifest.xml": {
+                "parents": {
+                    "/Deployment/App/Capabilities": [
+                        {
+                            "xml": "<Capability Name=\"ID_CAP_ISV_CAMERA\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<Capability Name=\"ID_CAP_MEDIALIB_PHOTO\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<Capability Name=\"ID_CAP_CONTACTS\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<Capability Name=\"ID_CAP_NETWORKING\" />",
+                            "count": 1
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    "installed_plugins": {
+        "cordova-plugin-camera": {
+            "PACKAGE_NAME": "{33e5bd10-6a45-11e5-accd-699cbe78c35c}"
+        },
+        "cordova-plugin-contacts": {
+            "PACKAGE_NAME": "{33e5bd10-6a45-11e5-accd-699cbe78c35c}"
+        },
+        "cordova-plugin-screen-orientation": {
+            "PACKAGE_NAME": "{33e5bd10-6a45-11e5-accd-699cbe78c35c}"
+        },
+        "cordova-plugin-sim": {
+            "PACKAGE_NAME": "{33e5bd10-6a45-11e5-accd-699cbe78c35c}"
+        },
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "{33e5bd10-6a45-11e5-accd-699cbe78c35c}"
+        }
+    },
+    "dependent_plugins": {}
+}

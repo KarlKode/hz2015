@@ -1,6 +1,6 @@
 'use strict';
 Raven.config('https://0e11573f9b43499790cbabf855256eb7@app.getsentry.com/54037').install()
-window.upload = "http://b491154a.ngrok.io/"
+window.upload = "https://images.ynh.io/"
 require('materialize-js');
 var jQBridget = require('jquery-bridget');
 var Masonry = require('masonry-layout');
