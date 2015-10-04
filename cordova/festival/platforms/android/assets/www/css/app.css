@@ -1728,7 +1728,7 @@ small{font-size:75%}
 .btn-floating.btn-large{width:55.5px;height:55.5px}
 .btn-floating.btn-large i{line-height:55.5px}
 button.btn-floating{border:none}
-.fixed-action-btn{position:fixed;right:23px;bottom:23px;padding-top:15px;margin-bottom:0;z-index:998}
+.fixed-action-btn{position:fixed;right:23px;bottom:23px;padding-top:15px;margin-bottom:0}
 .fixed-action-btn ul{left:0;right:0;text-align:center;position:absolute;bottom:64px;margin:0}
 .fixed-action-btn ul li{margin-bottom:15px}
 .fixed-action-btn ul a.btn-floating{opacity:0}
@@ -2212,15 +2212,19 @@ body #appview button.start{width:100%}
 .fly{-webkit-transition:all 1s ease-in-out;transition:all 1s ease-in-out;position:absolute;top:0;left:0;right:0;bottom:0;opacity:1;z-index:60000}
 .grid-item{width:33.333%;border:0}
 .grid-item:active,.grid-item:focus,.grid-item:hover{border:0;outline-color:transparent;outline-style:none}
-.face img{-webkit-transition:all .2s ease-in-out;transition:all .2s ease-in-out;-webkit-transform:scale(.1);transform:scale(.1);opacity:0}
+.face img{-webkit-transition:all .2s ease-in-out;transition:all .2s ease-in-out;-webkit-transform:scale(.1);transform:scale(.1);opacity:0;width:100px;height:100px}
 .show .face img{-webkit-transform:scale(.8);transform:scale(.6);opacity:.4}
 .show .face.select img{-webkit-box-shadow:0 0 20px 0 rgba(248,148,6,.25);box-shadow:0 0 20px 0 rgba(248,148,6,.25);opacity:1;-webkit-transform:scale(1);transform:scale(1)}
 body .done .face img,body .done .face.select img{-webkit-transform:scale(0);transform:scale(0)}
-.audioTrack,.sendNow,.takePhoto{-webkit-transition:all .8s ease-in-out;transition:all .8s ease-in-out;position:fixed;bottom:40px;left:50%;margin-left:-27.75px;-webkit-transform:translate(0,150px);transform:translate(0,150px);z-index:10000}
-.fly.move .sendNow{display:none}
+.audioTrack,.sendNow,.takePhoto,.waitButton{-webkit-transition:all .8s ease-in-out;transition:all .8s ease-in-out;position:fixed;bottom:40px;left:50%;margin-left:-27.75px;-webkit-transform:translate(0,150px);transform:translate(0,150px);z-index:10000}
+.fixed-action-btn{z-index:10000}
+.fly.move .sendNow,.fly.move .waitButton{display:none}
 body #content .takePhoto{-webkit-transform:scale(1.5);transform:scale(1.5)}
 body #content .audioTrack{left:24px;margin-left:0;-webkit-transform:scale(1);transform:scale(1)}
-.ready .sendNow{-webkit-transform:translate(0,0);transform:translate(0,0)}
+.ready.uploaded .sendNow,.waiting .waitButton{-webkit-transform:translate(0,0);transform:translate(0,0)}
+.waiting .waitButton i{animation-name:spin;animation-duration:1000ms;animation-iteration-count:infinite;animation-timing-function:linear}
+@keyframes spin{from{transform:rotate(360deg)}
+to{transform:rotate(0deg)}}
 .photo img{max-width:100%;display:block}
 .currentSong{-webkit-transition:all .8s ease-in-out;transition:all .8s ease-in-out;padding:0;margin:20px;position:fixed;bottom:100px;z-index:20000;left:0;right:0;-webkit-transform:translate(0,250px);transform:translate(0,250px)}
 body #content .showSong .currentSong{-webkit-transform:translate(0,0);transform:translate(0,0)}

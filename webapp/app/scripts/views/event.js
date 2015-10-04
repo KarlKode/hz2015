@@ -39,7 +39,7 @@ module.exports = Backbone.View.extend({
     },
 
     share: function(){
-        window.location.hash = '#share';
+        window.location.hash = '#photos';
     },
  
     superTerrificHappyApp: function () {

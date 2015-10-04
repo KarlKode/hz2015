@@ -13,7 +13,7 @@ $.superTerrificHappyApp = require('../lib/super-terrific-happy-app');
 
 // For the force layout:
 var padding = 10;
-var radius = 128/2;
+var radius = 100/2;
 var pack = d3.layout.pack()
     .sort(null)
     .size([100, 100])
@@ -44,17 +44,16 @@ module.exports = Backbone.View.extend({
     render: function() {
         console.log(this.model.toJSON());
 
-        var avatarUrls = [
-            'https://s3.amazonaws.com/uifaces/faces/twitter/ok/128.jpg',
-            'https://s3.amazonaws.com/uifaces/faces/twitter/spiltmilkstudio/128.jpg',
-            'https://s3.amazonaws.com/uifaces/faces/twitter/adellecharles/128.jpg',
-            'https://s3.amazonaws.com/uifaces/faces/twitter/sauro/128.jpg',
-            'https://s3.amazonaws.com/uifaces/faces/twitter/sauro/128.jpg'
-        ];
+        var avatarUrls =[{url:'http://imgur.com/W0ib3dI.jpg'},
+{url:'http://imgur.com/nWr5Fgg.jpg'},
+{url:'http://imgur.com/ByAzA9G.jpg'},
+{url:'http://imgur.com/GQ35cBV.jpg'},
+{url:'http://imgur.com/ydtYuC7.jpg'},
+{url:'http://imgur.com/GovoSWG.jpg'}];
 
         // Calculate positions for the faces 
         this.classes = { className:"", children: _.map(avatarUrls, function(d) { 
-            return {url: d, className:"", packageName: "", value: radius*0.6, selected: false }; }) 
+            return {url: d.url, className:"", packageName: "", value: radius*0.6, selected: false }; }) 
         };
 
         var packed = pack(this.classes);
@@ -71,7 +70,20 @@ module.exports = Backbone.View.extend({
         if(window.image){
             this.$('.shareBackground').css({'background-image':'url('+window.image+')'})
         }
+        if (window.image_url == null){
+            this.$el.addClass('waiting');
+            var self = this;
+            window.image_wait = function(){
+                self.imageArrived();
+            };
+        }else{
+            this.imageArrived();
+        }
         return this;
+    },
+
+    imageArrived: function(){
+        this.$el.removeClass('waiting').addClass('uploaded');
     },
     
     select: function(e){
@@ -116,6 +128,12 @@ module.exports = Backbone.View.extend({
         e.preventDefault();
         this.$el.removeClass('ready');
         this.$el.addClass('done');
+        if(window.image_url!=null){
+            window.PUBNUB_demo.publish({
+                channel: 'photos',
+                message: {"url":window.image_url+'_big.jpg'}
+            });
+        }
         _.delay(function(){
             window.location.hash = '#photos';
         }, 600)

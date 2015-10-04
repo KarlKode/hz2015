@@ -10,6 +10,55 @@ var imagesLoaded = require('imagesloaded');
 var EventModel = require('../models/event');
 
 $.superTerrificHappyApp = require('../lib/super-terrific-happy-app');
+function uploadCanvasData(dataUrl)
+{ 
+
+    var blob = dataURItoBlob(dataUrl);
+
+    var formData = new FormData();
+    formData.append("image", blob);
+
+    var request = new XMLHttpRequest();  
+    request.onreadystatechange = function() {
+        if (request.readyState == XMLHttpRequest.DONE ) {
+           if(request.status == 200){
+               var img = JSON.parse(request.responseText); 
+                window.image_url = img.url;
+                if(window.image_wait!=null){
+                    window.image_wait()
+                }
+           }
+           else if(request.status == 400) {
+              alert('There was an error 400')
+           }
+           else {
+               alert('something else other than 200 was returned')
+           }
+        }
+    }
+
+    request.open("POST", window.upload+"upload");
+    request.send(formData);
+}
+
+function dataURItoBlob(dataURI)
+{
+    var byteString = atob(dataURI.split(',')[1]);
+
+    var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0]
+
+    var ab = new ArrayBuffer(byteString.length);
+    var ia = new Uint8Array(ab);
+    for (var i = 0; i < byteString.length; i++)
+    {
+        ia[i] = byteString.charCodeAt(i);
+    }
+
+    var bb = new Blob([ab], { "type": mimeString });
+    return bb;
+}
+
+
 
 module.exports = Backbone.View.extend({ 
     
@@ -23,7 +72,9 @@ module.exports = Backbone.View.extend({
         'click .audioTrack': 'audioTrack',
         'touchend .audioTrack': 'audioTrack',
         'click .takePhoto': 'takePhoto',
-        'touchend .takePhoto': 'takePhoto'
+        'touchend .takePhoto': 'takePhoto',
+        'click .up': 'up',
+        'touchend .up': 'up'
     },
 
     audioTrack:function(e){
@@ -31,10 +82,16 @@ module.exports = Backbone.View.extend({
         this.$el.toggleClass("showSong");
     },
 
+
+    up:function(e){
+        e.preventDefault();
+        this.$(e.target).closest('a').click();
+    },
+
  
     initialize: function() {
         this.model = new EventModel();
-        this.listenTo(this.model, 'change:super-terrific-happy-app', this.render); 
+        this.listenTo(window.photos, 'add', this.addPhoto); 
 
         _.bindAll(this, 'superTerrificHappyApp');
 
@@ -42,40 +99,11 @@ module.exports = Backbone.View.extend({
 
     },
 
-    render: function() {
-        console.log(this.model.toJSON());
+    render: function() { 
 
         this.$el.html(this.template({
-            photos: [
-                
-                {url:'https://8z388m1yi2vn.firesize.com/500x500/g_none/https://images.unsplash.com/photo-1429514513361-8fa32282fd5f?q=80&fm=jpg&s=4d4414457de5ce31c7e26a9373d55eed'},
-                
-                {url:'https://8z388m1yi2vn.firesize.com/500x500/g_none/https://images.unsplash.com/13/unsplash_523b1f5aafc42_1.JPG?q=80&fm=jpg&s=682a413498f490307cbb324ed753cb24'},
-                {url:'https://8z388m1yi2vn.firesize.com/500x500/g_none/https://images.unsplash.com/uploads/1411160110892ab555b6f/80b0d25e?q=80&fm=jpg&s=8099617fe4a2a8753457a018bb736131'},
-
-                {url:'https://8z388m1yi2vn.firesize.com/500x500/g_none/https://images.unsplash.com/46/dpzDUkJrTHb71Yla1EzF_IMG_4098.jpg?q=80&fm=jpg&s=bca2374bb7eb4b710c41675ef068ac3c'},
-                {url:'https://8z388m1yi2vn.firesize.com/500x500/g_none/https://images.unsplash.com/46/unsplash_52c319226cefb_1.JPG?q=80&fm=jpg&s=b07cdc1f522e977fda8cc7ee63848f4d'},
-
-                
-                {url:'https://8z388m1yi2vn.firesize.com/500x500/g_none/https://images.unsplash.com/photo-1429514513361-8fa32282fd5f?q=80&fm=jpg&s=4d4414457de5ce31c7e26a9373d55eed'},
-                
-                {url:'https://8z388m1yi2vn.firesize.com/500x500/g_none/https://images.unsplash.com/13/unsplash_523b1f5aafc42_1.JPG?q=80&fm=jpg&s=682a413498f490307cbb324ed753cb24'},
-                {url:'https://8z388m1yi2vn.firesize.com/500x500/g_none/https://images.unsplash.com/uploads/1411160110892ab555b6f/80b0d25e?q=80&fm=jpg&s=8099617fe4a2a8753457a018bb736131'},
-
-                {url:'https://8z388m1yi2vn.firesize.com/500x500/g_none/https://images.unsplash.com/46/dpzDUkJrTHb71Yla1EzF_IMG_4098.jpg?q=80&fm=jpg&s=bca2374bb7eb4b710c41675ef068ac3c'},
-                {url:'https://8z388m1yi2vn.firesize.com/500x500/g_none/https://images.unsplash.com/46/unsplash_52c319226cefb_1.JPG?q=80&fm=jpg&s=b07cdc1f522e977fda8cc7ee63848f4d'},
-
-                
-                {url:'https://8z388m1yi2vn.firesize.com/500x500/g_none/https://images.unsplash.com/photo-1429514513361-8fa32282fd5f?q=80&fm=jpg&s=4d4414457de5ce31c7e26a9373d55eed'},
-                
-                {url:'https://8z388m1yi2vn.firesize.com/500x500/g_none/https://images.unsplash.com/13/unsplash_523b1f5aafc42_1.JPG?q=80&fm=jpg&s=682a413498f490307cbb324ed753cb24'},
-                {url:'https://8z388m1yi2vn.firesize.com/500x500/g_none/https://images.unsplash.com/uploads/1411160110892ab555b6f/80b0d25e?q=80&fm=jpg&s=8099617fe4a2a8753457a018bb736131'},
-
-                {url:'https://8z388m1yi2vn.firesize.com/500x500/g_none/https://images.unsplash.com/46/dpzDUkJrTHb71Yla1EzF_IMG_4098.jpg?q=80&fm=jpg&s=bca2374bb7eb4b710c41675ef068ac3c'},
-                {url:'https://8z388m1yi2vn.firesize.com/500x500/g_none/https://images.unsplash.com/46/unsplash_52c319226cefb_1.JPG?q=80&fm=jpg&s=b07cdc1f522e977fda8cc7ee63848f4d'},
-            ]
+            photos: _(window.photos.toJSON()).reverse().value()
         }));
-  
          var grid = this.$('.grid')[0];
 
         var msnry = new Masonry( grid, {
@@ -87,7 +115,7 @@ module.exports = Backbone.View.extend({
         msnry.layout();
         });
         var self = this;
-        this.$('.grid .grid-item').magnificPopup({
+        this.$('.grid .grid-item, .map, .pay').magnificPopup({
           type: 'image',
           mainClass: 'mfp-with-zoom', // this class is for CSS animation below
 
@@ -101,29 +129,39 @@ module.exports = Backbone.View.extend({
             // and to which popup will be scaled down
             // By defailt it looks for an image tag:
             opener: function(openerElement) {
-              self.$el.removeClass("showSong");
-              // openerElement is the element on which popup was initialized, in this case its <a> tag
-              // you don't need to add "opener" option if this code matches your needs, it's defailt one.
-              return openerElement.is('img') ? openerElement : openerElement.find('img');
+              self.$el.removeClass("showSong");     
+              var op = openerElement.is('img') ? openerElement : openerElement.find('img');
+               
+                return op.length==0?openerElement:op;
             }
           }
 
         });
+        this.msnry = msnry;
         return this;
     },
 
-    infos: function(e){
-        e.preventDefault();
-        this.$('.infos').openFAB();
-
+    addPhoto: function(m){
+        var item =$('<a class="photo grid-item" href="'+m.get('url')+'"><img src="'+m.get('url')+'" /></a>');
+        this.$('.grid').prepend(item);
+        var msnry = this.msnry;
+        imagesLoaded( item[0], function() {
+            // layout Masonry after each image loads
+            msnry.prepended(item[0]);  
+        }); 
     },
+ 
 
     takePhoto: function(e){
         e.preventDefault();
-
+        window.image = null;
+        window.image_url = null;
+        window.image_wait = null;
         function onSuccess(imageData) { 
             window.image = "data:image/jpeg;base64," + imageData;
+            uploadCanvasData(window.image);
             window.location.hash = "#share";
+
         }
 
         function onFail(message) {
